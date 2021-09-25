@@ -22,9 +22,6 @@ class App {
         this.btnInverseList=document.getElementById('btnInverseList')
         this.btnInverseList.addEventListener('click',this.inverseList)
 
-        this.btnInsert=document.getElementById('btnInsert')
-        this.btnInsert.addEventListener('click',this.insert)
-
         this.detalles = document.getElementById('detalles')
     }
 
@@ -36,8 +33,8 @@ class App {
 
     this.cleanDetails()
 
-    if(this.inventory.data.length == 19){
-      document.getElementById('thisdetalles').innerHTML += `
+    if(this.inventory.data.length >= 19){
+      document.getElementById('detalles').innerHTML += `
             <p>Imposible agregar el articulo: el límite de articulos es de 20</p>`
 
             return 
@@ -119,37 +116,6 @@ class App {
 
   }
 
-  insert = () => {
-      
-    this.cleanDetails()
-
-    let pos=document.getElementById('txtPos').value
-
-    console.log(pos)
-    
-    if(pos == ""){
-        this.detalles.innerHTML += '<p>Rellene el campo "Posición"</p>'  
-        return 
-    
-    }else if(pos > this.inventory.data.length || this.inventory.data <= 0){
-
-        this.detalles.innerHTML += '<p>Esa posición no es válida o no existe</p>'  
-        return 
-
-    }else{
-
-        let code=document.getElementById('txtCode').value
-        let name=document.getElementById('txtName').value
-        let quantity=document.getElementById('txtQuantity').value
-        let cost=document.getElementById('txtCost').value
-
-        let item=new Item(code, name, quantity, cost)
-
-        this.inventory.insert(item,pos) 
-
-        this.detalles.innerHTML += '<p>Se añadió el articulo</p>' 
-    }
-  }
 }
 
 let app = new App()

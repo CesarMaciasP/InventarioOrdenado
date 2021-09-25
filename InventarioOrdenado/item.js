@@ -8,6 +8,10 @@ export default class Item{
       this.totalValue = cost * quantity
     }
 
+    getCode(){
+      return this.code
+    }
+
     infoHtml(){
       return `<div>
         <h3>${this.name}   #${this.code}</h3>
